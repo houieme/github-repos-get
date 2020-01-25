@@ -10,6 +10,7 @@ import {
 
 export default class SearchForm extends Component {
   
+  
   state = {
     searchText: ''
   }
@@ -23,28 +24,17 @@ export default class SearchForm extends Component {
     this.props.onSearch(this.query.value);
     e.currentTarget.reset();
   }
-  
   render() {  
     return (
 
-      <Form  onSubmit={this.handleSubmit}>
-      <FormGroup>
-        <InputGroup className="input-group-alternative">
-          <InputGroupAddon addonType="prepend">
-            <InputGroupText>
-              <i className="ni ni-user-run" />
-            </InputGroupText>
-          </InputGroupAddon>
-          <Input
-           type="search" 
-           onChange={this.onSearchChange}
-           name="search" 
-           ref={(input) => this.query = input}
-           placeholder="Search..." 
-          />
-        </InputGroup>
-      </FormGroup>
-      </Form>
+      <Form  onSubmit={this.handleSubmit} >
+      <input type="text" 
+             onChange={this.onSearchChange}
+             name="search" 
+             ref={(input) => this.query = input}
+             placeholder="Search..." />
+
+    </Form>      
      
     );
   }

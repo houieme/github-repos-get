@@ -13,7 +13,7 @@ router.get('/github/:search', (req, res) => {
       const options = {
         uri: encodeURI(`https://api.github.com/search/repositories?q=${
           req.params.search
-        }/repos?per_page=25&sort=starsclient_id=${config.get(
+        }&sort=starsclient_id=${config.get(
           'githubClientId'
         )}&client_secret=${config.get('githubSecret')}`),
         method: 'GET',
@@ -34,7 +34,7 @@ router.get('/github/:search', (req, res) => {
       res.status(500).send('Server Error');
     }
   });
-  // @route    GET api/repos/github/:langage
+  // @route    GET api/repos/github/:search/:langage
 // @desc     Get  repos  with langage from Github 
 // @access   Public
 router.get('/github/:search/:langage', (req, res) => {
@@ -44,7 +44,7 @@ router.get('/github/:search/:langage', (req, res) => {
         req.params.search
       }+language:${
         req.params.langage
-      }/repos?per_page=25&sort=starsclient_id=${config.get(
+      }&sort=starsclient_id=${config.get(
         'githubClientId'
       )}&client_secret=${config.get('githubSecret')}`),
       method: 'GET',

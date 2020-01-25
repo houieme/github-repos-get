@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import {
  
   FormGroup,
@@ -11,60 +12,71 @@ import {
 } from "reactstrap";
 
 export default class SearchForm extends Component {
-  
-  state = {
+  constructor(props) {
+		super(props);
+  this.state = {
     searchText: '',
+    repos: [],
+      loading: true,
     language:''
   }
-  
-  onSearchChange = e => {
-    this.setState({ searchText: e.target.value });
-    this.setState({ language: e.target.value });
-  }
+  this.handleSubmit = this.handleSubmit.bind(this);
+}
+
   
   handleSubmit = e => {
     e.preventDefault();
-    this.props.onSearch(this.query.value);
-    this.props.onSearch(this.language.value);
-    e.currentTarget.reset();
+    const data = new FormData();
+		const searchText = data.append('searchText', this.search.value);
+		const language = data.append('language', this.language.value);
+    axios.get(`/api/repos/github/${searchText}/${language}`)
+      .then(response => {
+        this.setState({
+          searchText: searchText,
+          language: language,
+          repos: response.data.items,
+          loading: false
+        });
+      })
+      .catch(error => {
+        console.log('Error fetching and parsing data', error);
+      });    
   }
   
   render() {  
     return (
 
       <Form  onSubmit={this.handleSubmit}>
-      <FormGroup>
-        <InputGroup className="input-group-alternative">
-          <InputGroupAddon addonType="prepend">
-            <InputGroupText>
-              <i className="ni ni-user-run" />
-            </InputGroupText>
-          </InputGroupAddon>
-          <Input
+   
+          <input
            type="search" 
-           onChange={this.onSearchChange}
+           
            name="search" 
-           ref={(input) => this.query = input}
+           ref={ref => {
+            this.search = ref;
+          }}
            placeholder="Search..." 
           />
-        </InputGroup>
-      </FormGroup>
-      <FormGroup>
-        <InputGroup className="input-group-alternative">
-          <InputGroupAddon addonType="prepend">
-            <InputGroupText>
-              <i className="ni ni-user-run" />
-            </InputGroupText>
-          </InputGroupAddon>
-          <Input
+        <br>
+        </br>
+        <br>
+        </br>
+          <input
            type="texte" 
-           onChange={this.onSearchChange}
+           
            name="language" 
-           ref={(input) => this.query = input}
+           ref={ref => {
+            this.language = ref;
+          }}
            placeholder="Language..." 
           />
-        </InputGroup>
-      </FormGroup>
+         <br>
+        </br>
+        <br>
+        </br>
+        <div>
+						<button className="btn btn-success">Search</button>
+					</div>
       </Form>
      
     );

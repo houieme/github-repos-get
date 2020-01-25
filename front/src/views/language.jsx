@@ -23,26 +23,31 @@ import {
 
 export default class Simple extends Component {
   
-  constructor() {
-    super();
-    this.state = {
-      repos: [],
-      loading: true
-    };
-  } 
-
-  componentDidMount() {
-    this.performSearch();
+  constructor(props) {
+		super(props);
+  this.state = {
+    searchText: '',
+    repos: [],
+      loading: true,
+    language:''
   }
+  this.handleSubmit = this.handleSubmit.bind(this);
+}
+
   
-  performSearch = (query = '', language='') => {
-    axios.get(`/api/repos/github/${query}/${language}`)
+  handleSubmit = e => {
+    e.preventDefault();
+    const data = new FormData();
+    data.append('language', this.language.value);
+    data.append('searchText', this.search.value);
+		const searchText = data.append('searchText', this.search.value);
+		const language = data.append('language', this.language.value);
+    axios.get(`/api/repos/github/${searchText}/${language}`)
       .then(response => {
         this.setState({
-          query: query,
+          searchText: searchText,
           language: language,
-          language:language,
-          repos: response.data,
+          repos: response.data.items,
           loading: false
         });
       })
@@ -50,6 +55,7 @@ export default class Simple extends Component {
         console.log('Error fetching and parsing data', error);
       });    
   }
+  
  
   render() { 
     return (
@@ -100,7 +106,40 @@ export default class Simple extends Component {
                     <div className="h6 mt-4">
                            <Card className="bg-gradient-secondary shadow">
                     <CardBody className="p-lg-5">
-                    <SearchFormLanguage onSearch={this.performSearch} />   
+                    <Form  onSubmit={this.handleSubmit}>
+   
+   <input
+    type="search" 
+    
+    name="search" 
+    ref={ref => {
+     this.search = ref;
+   }}
+    placeholder="Search..." 
+   />
+ <br>
+ </br>
+ <br>
+ </br>
+   <input
+    type="texte" 
+    
+    name="language" 
+    ref={ref => {
+     this.language = ref;
+   }}
+    placeholder="Language..." 
+   />
+  <br>
+ </br>
+ <br>
+ </br>
+ <div>
+     <button className="btn btn-success">Search</button>
+   </div>
+</Form>
+
+
                     </CardBody>
                   </Card>
                
@@ -113,7 +152,7 @@ export default class Simple extends Component {
                       {
             (this.state.loading)
              ? <p>Loading...</p>
-             : <div><h2>{this.state.query}</h2><RepoList data={this.state.repos} /></div>
+             : <div><h2>{this.state.language}</h2><RepoList data={this.state.repos} /></div>
           }          
                      </Col>
                     </Row>

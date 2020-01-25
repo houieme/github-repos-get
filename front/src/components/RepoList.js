@@ -7,7 +7,7 @@ const RepoList = props => {
   const results = props.data;
   let repos;
   if (results.length) {
-    repos = results.map(repo => <Repo name={repo.name} Stars={repo.stargazers_count} Forks={repo.forks_count} Watchers={repo.watchers_count} url={repo.html_url} description={repo.description} key={repo.id} />);    
+    repos = results.map(repo => <Repo  Fullname={repo.Fullname} name={repo.name} stargazers_count={repo.stargazers_count} forks_count={repo.forks_count} watchers_count={repo.watchers_count} url={repo.html_url} description={repo.description} key={repo.id} />);    
   } else {
     repos = <NoRepos />
   }
