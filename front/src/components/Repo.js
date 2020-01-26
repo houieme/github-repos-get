@@ -1,12 +1,24 @@
 import React from 'react';
+import classnames from "classnames";
+import{
+  Nav,
+  NavItem,
+  NavLink,
+  Card,
+  CardBody,
+  TabContent,
+   TabPane
+  }
 
+
+from 'reactstrap';
 
 const props = props => (
   <ul>
-     <div key={props.id} className='props bg-white p-1 my-1'>
-            <div>
-              <h4>
-                <a
+ {/* Menu */}
+ <div className="mb-3">
+              
+             <h4><a
                   href={props.url}
                   target='_blank'
                   rel='noopener noreferrer'
@@ -14,27 +26,52 @@ const props = props => (
                   {props.name}
                   
                 </a>
-                <h2>{props.Fullname}</h2>
-              </h4>
-              <p>{props.description}</p>
+                </h4> 
             </div>
-            <div>
-              <ul>
-                <li className='badge badge-primary'>
-                  Stars: {props.stargazers_count}
-                </li>
-                <li className='badge badge-dark'>
-                  Watchers: {props.watchers_count}
-                </li>
-                <li className='badge badge-light'>Forks: {props.forks_count}</li>
-              </ul>
+            <div className="nav-wrapper">
+              <Nav
+                className="nav-fill flex-column flex-md-row"
+                id="tabs-icons-text"
+                pills
+                role="tablist"
+              >
+                <NavItem >
+                  <NavLink style={{backgroundColor: "lightblue"}}>
+                   Stars: {props.stargazers_count}
+                  </NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink  style={{backgroundColor: "lightblue"}}>
+                    Watchers: {props.watchers_count}
+                  </NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink style={{backgroundColor: "lightblue"}}>
+                    Forks: {props.forks_count}
+                  </NavLink>
+                </NavItem>
+              </Nav>
             </div>
-          </div>
-        
-  
+            <Card className="shadow">
+              <CardBody>
+                <TabContent>
+                  <TabPane >
+                    <p className="description">
+                    <p>{props.description}</p>
+                    </p>
+                   
+                  </TabPane>
+                 
+                 
+                </TabContent>
+              </CardBody>
+            </Card>
+          <hr></hr>
 </ul>
   
-
+ 
+            
+        
 );
 
 export default props;
