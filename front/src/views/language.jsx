@@ -31,17 +31,22 @@ export default class Simple extends Component {
       loading: true,
     language:''
   }
+  this.handleTextChange = this.handleTextChange.bind(this);
+  this.handleChange = this.handleChange.bind(this);
   this.handleSubmit = this.handleSubmit.bind(this);
 }
-
-  
+handleChange(event) {
+  this.setState({searchText: event.target.value});
+  this.setState({language: event.target.value});
+}
+handleTextChange(event) {
+  this.setState({searchText: event.target.value});
+ 
+}
   handleSubmit = e => {
-    e.preventDefault();
-    const data = new FormData();
-    data.append('language', this.language.value);
-    data.append('searchText', this.search.value);
-		const searchText = data.append('searchText', this.search.value);
-		const language = data.append('language', this.language.value);
+   
+		const searchText = this.state.searchText;
+		const language = this.state.language;
     axios.get(`/api/repos/github/${searchText}/${language}`)
       .then(response => {
         this.setState({
@@ -53,7 +58,8 @@ export default class Simple extends Component {
       })
       .catch(error => {
         console.log('Error fetching and parsing data', error);
-      });    
+      });  
+      e.preventDefault();  
   }
   
  
@@ -101,43 +107,41 @@ export default class Simple extends Component {
                     </h3>
                     <div className="h6 font-weight-300">
                       <i className="ni location_pin mr-2" />
-                    Search with username
+                    Search with Language
                     </div>
                     <div className="h6 mt-4">
                            <Card className="bg-gradient-secondary shadow">
                     <CardBody className="p-lg-5">
                     <Form  onSubmit={this.handleSubmit}>
    
-   <input
-    type="search" 
-    
-    name="search" 
-    ref={ref => {
-     this.search = ref;
-   }}
-    placeholder="Search..." 
-   />
- <br>
- </br>
- <br>
- </br>
-   <input
-    type="texte" 
-    
-    name="language" 
-    ref={ref => {
-     this.language = ref;
-   }}
-    placeholder="Language..." 
-   />
-  <br>
- </br>
- <br>
- </br>
- <div>
-     <button className="btn btn-success">Search</button>
-   </div>
-</Form>
+                        <input
+                          type="search" 
+                          
+                          name="search" 
+                          value={this.state.searchText} 
+                          onChange={this.handleTextChange}
+                          placeholder="Search..." 
+                        />
+                      <br>
+                      </br>
+                      <br>
+                      </br>
+                        <input
+                          type="texte" 
+                          
+                          name="language" 
+                          value={this.state.language} 
+                          onChange={this.handleChange}
+                          placeholder="Language..." 
+                        />
+                        <br>
+                      </br>
+                      <br>
+                      </br>
+                      <div>
+                          <button className="btn btn-success">Search</button>
+                        </div>
+                      </Form>
 
 
                     </CardBody>
