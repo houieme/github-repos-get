@@ -37,5 +37,9 @@
   "bugs": {
     "url": "https://github.com/houieme/github-repos-get/issues"
   },
-  "homepage": "https://github.com/houieme/github-repos-get#readme"
+  "homepage": "https://github.com/houieme/github-repos-get#readme",
+"engines": {
+  "node": "0.10.x",
+  "npm": "1.2.x"
 }
+  }
