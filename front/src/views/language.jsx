@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
 import axios from 'axios';
-import SearchFormLanguage from 'components/SearchFormLanguage';
-import RepoList from 'components//RepoList';
-import DemoNavbar from "components/Navbars/DemoNavbar.jsx";
-import SimpleFooter from "components/Footers/SimpleFooter.jsx";
+import SearchFormLanguage from '../components/SearchFormLanguage';
+import RepoList from '../components/RepoList';
+import DemoNavbar from "../components/Navbars/DemoNavbar.jsx";
+import SimpleFooter from "../components/Footers/SimpleFooter.jsx";
 import {
   Button,
   Card,
