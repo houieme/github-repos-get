@@ -36,7 +36,7 @@ export default class Simple extends Component {
   this.handleSubmit = this.handleSubmit.bind(this);
 }
 handleChange(event) {
-  this.setState({searchText: event.target.value});
+  
   this.setState({language: event.target.value});
 }
 handleTextChange(event) {
@@ -152,7 +152,7 @@ handleTextChange(event) {
                   </div>
                   <div className="mt-5 py-5 border-top text-center">
                     <Row className="justify-content-center">
-                      <Col lg="9">
+                      <Col lg="12">
                       {
             (this.state.loading)
              ? <p>Loading...</p>
