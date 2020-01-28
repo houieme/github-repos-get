@@ -11,6 +11,7 @@ import Index from "./views/Index.jsx";
 import UserName from "./views/username.jsx";
 import Simple from "./views/Simple.jsx";
 import Language from "./views/language.jsx";
+import Profile from "./components/Profile.jsx";
 
 
 
@@ -24,7 +25,7 @@ ReactDOM.render(
         exact
         render={props => <UserName {...props} />}
       />
-     
+      <Route path="/Profile" exact render={props => <Profile {...props} />} />
       <Route path="/Simple" exact render={props => <Simple {...props} />} />
       <Route path="/language" exact render={props => <Language {...props} />} />
       <Redirect to="/" />

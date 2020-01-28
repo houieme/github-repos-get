@@ -2,17 +2,14 @@ import React, { Component } from 'react';
 
 import axios from 'axios';
 import SearchForm from '../components/SearchForm';
+import { Button, Card, Container, Row, Col, CardBody } from "reactstrap";
+import Followers from '../components/followers';
+import Following from '../components/following';
+
+// core components
 import RepoList from '../components/RepoList';
-import DemoNavbar from '../components/Navbars/DemoNavbar.jsx';
+import DemoNavbar from "../components/Navbars/DemoNavbar.jsx";
 import SimpleFooter from "../components/Footers/SimpleFooter.jsx";
-import {
-  
-  Card,
-  CardBody,
-  Container,
-  Row,
-  Col
-} from "reactstrap";
 
 export default class Simple extends Component {
   
@@ -26,6 +23,7 @@ export default class Simple extends Component {
 
   componentDidMount() {
     this.performSearch();
+   
   }
   
   performSearch = (query = 'houieme',) => {
@@ -39,7 +37,23 @@ export default class Simple extends Component {
       })
       .catch(error => {
         console.log('Error fetching and parsing data', error);
-      });    
+      }); 
+      axios.get(`/api/repos/user/${query}/followers`)
+        .then(response => {
+          this.setState({
+            query: query,
+          
+            followers: response.data,
+          });
+        })
+        axios.get(`/api/repos/user/y${query}/following`)
+        .then(response => {
+          this.setState({
+            query: query,
+          
+            following: response.data,
+          });
+        })   
   }
  
   render() { 
@@ -104,7 +118,9 @@ export default class Simple extends Component {
                       {
             (this.state.loading)
              ? <p>Loading...</p>
-             : <div><h2>{this.state.query}</h2><RepoList data={this.state.repos} /></div>
+             : <div><h2>{this.state.query}</h2><RepoList data={this.state.repos} />
+             
+           </div>
           }          
                      </Col>
                     </Row>

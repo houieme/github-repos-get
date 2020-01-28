@@ -32,19 +32,7 @@ const props = props => (
                 <a href={props.url} target='_blank'rel='noopener noreferrer'>{props.fullname} </a>
               </h4>
                
-               <h4> owner: {props.owber} </h4>  
-                           <Link to={{pathname: '/Profile',
-                         state: { avatar_url:props.avatar_url,
-                          followers:props.followers_url,
-                          owner:props.owber,
-                           following:props.following_url}}}
-                           className="btn btn-primary mr-4"
-                           color="info"
-                          
-                           size="sm"
-                         >
-                          Profile
-                         </Link>
+             
               
              </div>
              <div className="nav-wrapper">

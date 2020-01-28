@@ -116,7 +116,7 @@ handleTextChange(event) {
    
                         <input
                           type="search" 
-                          
+                          class="form-control"
                           name="search" 
                           value={this.state.searchText} 
                           onChange={this.handleTextChange}
@@ -128,7 +128,7 @@ handleTextChange(event) {
                       </br>
                         <input
                           type="texte" 
-                          
+                          class="form-control"
                           name="language" 
                           value={this.state.language} 
                           onChange={this.handleChange}
@@ -152,7 +152,7 @@ handleTextChange(event) {
                   </div>
                   <div className="mt-5 py-5 border-top text-center">
                     <Row className="justify-content-center">
-                      <Col lg="12">
+                      <Col lg="9">
                       {
             (this.state.loading)
              ? <p>Loading...</p>
@@ -171,8 +171,4 @@ handleTextChange(event) {
     );
   }
  
-
 }
-
-
-
