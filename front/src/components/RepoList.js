@@ -4,6 +4,8 @@ import NoRepos from './NoRepos';
 
 const RepoList = props => { 
   
+
+  
   const results = props.data;
   let repos;
   if (results.length) {
@@ -12,11 +14,18 @@ const RepoList = props => {
       forks_count={repo.forks_count} watchers_count={repo.watchers_count} url={repo.html_url}
        description={repo.description} key={repo.id}
        avatar_url={repo.owner.avatar_url} followers={repo.owner.followers_url} following={repo.owner.following_url}
-       />);    
+       />)
+       
+       
+       
+       
+       ;    
   } else {
     repos = <NoRepos />
-  }
+  };
 
+
+     
   return(
     <ul className="repo-list">
       {repos}

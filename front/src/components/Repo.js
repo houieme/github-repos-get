@@ -23,7 +23,7 @@ const props = props => (
   <ul>
 
       <Row>
-          <Col lg="4">
+          <Col className="col-12 col-md-4">
             {/* Tabs with icons */}
           
             <section className="section">
@@ -31,13 +31,14 @@ const props = props => (
               <Card className=" shadow ">
                 <div className="px-4">
                   <Row className="justify-content-center">
-                    <Col className="order-lg-2" lg="3">
-                      <div className="card-profile-image">
+                    <Col  >
+                      <div className="card-profile-image mb-3" style={{max_width:30}}>
                         <a href="#pablo" onClick={e => e.preventDefault()}>
                           <img
                             alt="..."
                             className="rounded-circle"
                            src={props.avatar_url}
+                           
                           />
                         </a>
                       </div>
@@ -63,20 +64,7 @@ const props = props => (
                       
                     </h3>
                     <div className="h6 font-weight-300">
-                    <div className="card-profile-stats d-flex justify-content-center">
-                        <div>
-                          <span className="heading">22</span>
-                          <span className="description">Followers</span>
-                        </div>
-                        <div>
-                          <span className="heading">10</span>
-                          <span className="description">Following</span>
-                        </div>
-                        <div>
-                          <span className="heading">89</span>
-                          <span className="description">Repositories </span>
-                        </div>
-                    </div>
+                  
                     
                    
                   </div>
@@ -87,9 +75,9 @@ const props = props => (
           </section>
         
         </Col>
-          <Col className="mt-5 mt-lg-0" lg="8">
+          <Col className="col-12 col-md-8">
           {/* Menu */}
- <div className="mb-3">
+             <div className="mb-3">
               
               <h4><a
                    href={props.url}

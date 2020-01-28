@@ -50,7 +50,7 @@ export default class SearchForm extends Component {
    
           <input
            type="search" 
-           
+           class="form-control"
            name="search" 
            ref={ref => {
             this.search = ref;
@@ -63,7 +63,7 @@ export default class SearchForm extends Component {
         </br>
           <input
            type="texte" 
-           
+           class="form-control"
            name="language" 
            ref={ref => {
             this.language = ref;

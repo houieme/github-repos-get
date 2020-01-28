@@ -39,11 +39,12 @@ class DemoNavbar extends React.Component {
             id="navbar-main"
           >
             <Container>
-              <NavbarBrand className="mr-lg-5" to="/" tag={Link}>
+              <NavbarBrand className="mr-lg-5" to="/" tag={Link} >
                 <Link to="/">
                       <img
                   alt="..."
-                  src={require("../../assets/img/brand/argon-react-white.png")}
+                  src={require("../../assets/img/brand/logo.png")}
+                  style={{height:100, width:100}}
                 />
                       </Link>
               </NavbarBrand>
@@ -57,7 +58,7 @@ class DemoNavbar extends React.Component {
                       <Link to="/">
                       <img
                   alt="..."
-                  src={require("../../assets/img/brand/argon-react-white.png")}
+                  src={require("../../assets/img/brand/logo.png")}
                 />
                       </Link>
                     </Col>

@@ -85,7 +85,7 @@ export default class Simple extends Component {
                     </h3>
                     <div className="h6 font-weight-300">
                       <i className="ni location_pin mr-2" />
-                    Search with username
+                    
                     </div>
                     <div className="h6 mt-4">
                            <Card className="bg-gradient-secondary shadow">

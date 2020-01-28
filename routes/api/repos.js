@@ -96,4 +96,35 @@ router.get('/user/:username', (req, res) => {
   }
 });
   
+// @route    GET api/repos/user/:username/followers
+// @desc     Get user repos from Github
+// @access   Public
+router.get('/user/:username/followers', (req, res) => {
+  try {
+    const options = {
+      uri: encodeURI(`https://api.github.com/users/${
+        req.params.username
+      }/followers/repos?per_page=25&sort=created:asc&client_id=${config.get(
+        'githubClientId'
+      )}&client_secret=${config.get('githubSecret')}`),
+      method: 'GET',
+      headers: { 'user-agent': 'node.js' }
+    };
+
+    request(options, (error, response, body) => {
+      if (error) console.error(error);
+
+      if (response.statusCode !== 200) {
+        return res.status(404).json({ msg: 'No Github profile found' });
+      }
+
+      res.json(JSON.parse().lenght);
+    });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+  
+
   module.exports = router;
